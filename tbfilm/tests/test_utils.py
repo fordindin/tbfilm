@@ -2,16 +2,22 @@ import unittest
 
 from tbfilm import GetPage
 from tbfilm import tests
+from urllib import request as rq
+import base64
+from tbfilm.weird_b64_decode import w_base64_decode as wbd
 
 import inspect
 import logging
-from tbfilm import tests
 
 class Test_utils(tests.TestCase):
 
+    metasample = rq.unquote("Ptas6vG8R7r5UxZW6jY1fSsGu1JZ67pWlwZIlLY1RTd7zXExujg%2btn%3dg6vax9vc%2btn%3d8ut2L6kr50xrLfjspC1A8uCAglwr70Tr4Rts5fjEL0xnYpLAipXU2ljJ3ftljpw0x0x0iOwcsljd1ljGWlwr70Tr4RtspC1A8uCAg9eE%2bfLp10jF70Lh707E20Xu5fjEGfX8Lpt32pxr3fjZjf7ngzxh2P8YKuCAgzkpWRTBjlTf5P8YKuCAg0TpGlvpYPjExOXGW0TpGlvpYP8YKuCAgler50TdN6xs%2bfj3yOXGWler50TdN6xs%2btn%3d8ut2%3dUXs2PCa%3dUXspC1A8PwrNlts2OX8LfLGWlvZ3P8YKuCAgUxp5lvrIP1gW9viQzQdiU7BN95yYR1aJ67ZD0v2z9vyQlwaDzL3ipjAif7r7fLnk0xnGOt35pXAslXExOXnxltEsfjEk01yqUwUgzkpjU7rZ6jspC1A8PepNH7rLP8YKuCA8ut23lvlhRv2YPjuiOX0YfjuypXGWlwr70Tr4RtspC1A8uCAg9eE%2bOtE5pL8ipt3iPCa%3dUXspC1A8PCaL9TNZULspC1A8Pw2h67RLP8YKuCA8ut2Z6js2PCaZ6jspC1A8uCAgUQc%2bfXGWUQc%2btn%3d8utGW6wFIlkf%2btn%3d8ut2LRvBY9Td4lTf%2btn%3d8uCA8PwrIPjAgzxrIP8YKuCA8ut25RXsGPCa5RXspC1A8uCAgUxaiU7pZU5AWP8YKuCAgzkpi0QdNRw2ZULspCjGW6vax9vc%2b")
+    out_txt = "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8bW92aWU+DQogIDxzb3VyY2VzMj4NCiAgICA8ZGVmYXVsdD4yMjEzY2Q0NzA1NTcxZjBkMDZjNGY2Y2Y1OGU4ZjRiZjwvZGVmYXVsdD4NCiAgICA8aHE+MzNiYjFmYzhmYmExYTIyMjEwMTgzNDkxN2VkMjljMmQ8L2hxPg0KICA8L3NvdXJjZXMyPg0KICA8YXNwZWN0PjE2OTwvYXNwZWN0Pg0KICA8ZHVyYXRpb24+Mjk5OTwvZHVyYXRpb24+DQogIDxocT4xPC9ocT4NCiAgPGVpZD4xOTgzMzwvZWlkPg0KICA8c2NyZWVuPi8vaW1nLnR1cmJpay50di9BbmltYWxLaW5nZG9tLzk1NjA1MmVmMzQ3Y2QwODkyNTA4ZTE2OTQ2ZDE4MjE3Yi5qcGc8L3NjcmVlbj4NCiAgPHNpemVzPg0KICAgIDxkZWZhdWx0PjI1OTY0MjI5NTwvZGVmYXVsdD4NCiAgICA8aHE+ODEyNzg1NDk1PC9ocT4NCiAgPC9zaXplcz4NCiAgPGxhbmdzPg0KICAgIDxlbj4xPC9lbj4NCiAgICA8cnU+MTwvcnU+DQogIDwvbGFuZ3M+DQogIDxzdWJ0aXRsZXM+DQogICAgPGVuPjA8L2VuPg0KICAgIDxydT4wPC9ydT4NCiAgICA8c291cmNlcyAvPg0KICA8L3N1YnRpdGxlcz4NCjwvbW92aWU+"
     @tests.logmyname
-    def test_HTMLParser(self):
-        self.assertFalse(False)
+    def test_weird_b64_decode(self):
+        wd = base64.b64encode(wbd(self.metasample)).decode()
+        # m = list(map(lambda a,b: a==b, wd, self.out_txt))
+        self.assertTrue(self.out_txt == wd)
 
 if __name__ == '__main__':
     print (__file__)

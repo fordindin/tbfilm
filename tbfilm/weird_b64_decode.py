@@ -2,23 +2,11 @@
 
 from base64 import b64decode
 
-def enc_replace_ab(e, d, s):
-		s = s.replace(e, "___")
-		s = s.replace(d, e)
-		s = s.replace("___",d)
-		return s
+def w_base64_decode(s):
+    a = "xuYokngrmTwfdcesilytpbzaJv"
+    b = "2I0=3Q8V7XGMRUH41Z5DN6L9BW"
 
-def enc_replace(g, f):
-		a = 0
-		e = "2I0=3Q8V7XGMRUH41Z5DN6L9BW"
-		d = "xuYokngrmTwfdcesilytpbzaJv"
-		c = d
-		b = e
-		while a < len(c):
-				g = enc_replace_ab(c[a], b[a], g)
-				a+=1
-		return g
+    for i,v in enumerate(a):
+        s = s.replace(v, '___').replace(b[i], v).replace('___', b[i])
 
-def w_base64_decode(a):
-    a = enc_replace(a, "d")
-    return b64decode(a)
+    return b64decode(s)
