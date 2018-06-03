@@ -17,7 +17,7 @@ srt_urlRE=re.compile('https://(?:.*)/([0-9a-f]{32}).*')
 
 sub_lang="en"
 #sub_lang="ru"
-sub_base=urllib.basejoin("http://sub.turbik.tv/", sub_lang)
+sub_base="http://sub.turbik.tv/" +  sub_lang
 
 login = "dindin@dindin.ru"
 
